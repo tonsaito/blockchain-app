@@ -4,6 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "nodes": "npm run node_0 & npm run node_1 & npm run node_2 & npm run node_3 & npm run node_4",
+    "node_0": "nodemon --watch dev -e js dev/networkNode.js 3000 http://localhost:3000",
+    "node_1": "nodemon --watch dev -e js dev/networkNode.js 3001 http://localhost:3001",
+    "node_2": "nodemon --watch dev -e js dev/networkNode.js 3002 http://localhost:3002",
+    "node_3": "nodemon --watch dev -e js dev/networkNode.js 3003 http://localhost:3003",
+    "node_4": "nodemon --watch dev -e js dev/networkNode.js 3004 http://localhost:3004",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +23,12 @@
   },
   "homepage": "https://github.com/tonsaito/blockchain-app#readme",
   "dependencies": {
-    "sha256": "^0.2.0"
+    "body-parser": "^1.19.1",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "sha256": "^0.2.0",
+    "uuid": "^8.3.2"
   }
 }
