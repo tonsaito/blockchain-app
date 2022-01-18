@@ -27,6 +27,7 @@ app.post('/transaction', function(req, res){
     res.json({ note: `Transaction will be added in block ${blockIndex}`});
 });
 
+//create a new transaction and broadcast to the network
 app.post('/transaction/broadcast', function(req, res){
     const newTransaction = blockchain.createNewTransaction(req.body.amount, req.body.sender, req.body.recipient);
     blockchain.addTransactiontoPendingTransactions(newTransaction);
@@ -61,6 +62,7 @@ app.get('/mine', function(req, res){
     const newBlock = blockchain.createNewBlock(nonce, previousBlockHash, blockHash);
 
     const requestPromises = [];
+    //send new block to the network
     blockchain.networkNodes.forEach(networkNodeUrl => {
         const requestOptions = {
             uri: networkNodeUrl + '/receive-new-block',
