@@ -120,10 +120,12 @@ app.post('/receive-new-block', function(req, res){
 //register a node and broadcast it the network
 app.post('/register-and-broadcast-node', function(req, res){
     const newNodeUrl = req.body.newNodeUrl;
+    //register new node if not exists
     if(blockchain.networkNodes.indexOf(newNodeUrl) == -1){
         blockchain.networkNodes.push(newNodeUrl);
     }
     const requestPromises = [];
+    //send the new node to my network
     blockchain.networkNodes.forEach(networkNodeUrl => {
 
         const requestOptions = {
@@ -135,6 +137,7 @@ app.post('/register-and-broadcast-node', function(req, res){
         requestPromises.push(rp(requestOptions));
     });
 
+    //register all existing nodes in the new node
     Promise.all(requestPromises)
     .then(data => {
         const bulkRegisterOptions = {
